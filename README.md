@@ -4,6 +4,10 @@
 - Python 3.x
 - Node.js
 - Bash
+- 
+git add .
+git commit -m "Initial commit with Python, Bash, and JavaScript scripts"
+git push origin main
 
 ### Langkah-langkah Instalasi
 1. Clone repositori ini:

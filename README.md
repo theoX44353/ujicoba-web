@@ -4,6 +4,7 @@
 - Python 3.x
 - Node.js
 - Bash
+- pip install flask flask-cors mysql-connector-python
 - 
 git add .
 git commit -m "Initial commit with Python, Bash, and JavaScript scripts"

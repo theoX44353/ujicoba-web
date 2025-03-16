@@ -1,0 +1,46 @@
+<?php
+// api.php (Contoh Endpoint PHP untuk Integrasi)
+header('Content-Type: application/json');
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydatabase";
+
+// Membuat koneksi
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Mengecek koneksi
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));
+}
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+switch ($method) {
+    case 'GET':
+        $result = $conn->query("SELECT * FROM users");
+        $data = [];
+        while($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        echo json_encode($data);
+        break;
+    
+    default:
+        echo json_encode(['error' => 'Method not supported']);
+        break;
+}
+
+$conn->close();
+?>
+
+-- database.sql (Struktur Database)
+CREATE DATABASE IF NOT EXISTS mydatabase;
+USE mydatabase;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
+);
